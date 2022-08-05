@@ -37,7 +37,7 @@ function squarePromise(numberPromise) {
         if (!isNaN(parseInt(resp))) {
           resolve(parseInt(resp) * parseInt(resp));
         } else {
-          reject("Cannot convert '" + resp + "' to a number!");
+          reject(`Cannot convert '` + resp + `' to a number!`);
         }
       });
     }
@@ -51,7 +51,17 @@ function squarePromise(numberPromise) {
  * @returns {Promise<number>}
  */
 function squarePromiseOrZero(promise) {
-  return squarePromise(promise).catch(/* IMPLEMENT ME! */);
+  return squarePromise(promise).catch(
+    /* IMPLEMENT ME! */
+    (resp) => {
+      return new Promise((resolve, reject) => {
+        if (isNaN(parseInt(resp))) {
+          resolve(0);
+        }
+        reject(resolve(0));
+      });
+    }
+  );
 }
 
 /**
