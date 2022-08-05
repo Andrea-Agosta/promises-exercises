@@ -71,7 +71,17 @@ function squarePromiseOrZero(promise) {
  * @returns {Promise}
  */
 function switcheroo(promise) {
-  return promise.then(/* IMPLEMENT ME */);
+  return promise.then(
+    /* IMPLEMENT ME */
+    function success(res) {
+      return new Promise((resolve, reject) => {
+        reject(res);
+      });
+    },
+    function error(err) {
+      return err;
+    }
+  );
 }
 
 /**
