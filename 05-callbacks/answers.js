@@ -61,6 +61,9 @@ function makePromiseFromFunctionWithCallback(fn, ...fnParams) {
     - resolves with a value if the callback succeeds
     - rejects with an error if the callback fails
   */
+  return new Promise(function (resolve, reject) {
+    fn(...fnParams, (err, value) => (err ? reject(err) : resolve(value)));
+  });
 }
 
 /**
