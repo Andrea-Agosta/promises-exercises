@@ -1,37 +1,43 @@
 /**
- * 
+ *
  * EXERCISE 1
- * 
- * @param {Promise} promise 
- * @param {function} asyncTransformer 
+ *
+ * @param {Promise} promise
+ * @param {function} asyncTransformer
  */
-function flatMapPromise(promise, asyncTransformer){
+function flatMapPromise(promise, asyncTransformer) {
   return new Promise((resolve, reject) => {
     promise
-      .then(/* IMPLEMENT ME! */);
+      .then(
+        /* IMPLEMENT ME! */
+        (resp) => {
+          resolve(asyncTransformer(resp));
+        }
+      )
+      .catch((err) => reject(err));
   });
 }
 
 /**
- * 
+ *
  * EXERCISE 2
- * 
- * @param {Promise} firstPromise 
- * @param {function} slowAsyncProcess 
+ *
+ * @param {Promise} firstPromise
+ * @param {function} slowAsyncProcess
  */
-function chainTwoAsyncProcesses(firstPromise, slowAsyncProcess){
+function chainTwoAsyncProcesses(firstPromise, slowAsyncProcess) {
   return firstPromise.then(/* IMPLEMENT ME! */);
 }
 
 /**
- * 
+ *
  * EXERCISE 3
- * 
- * @param {function} getUserById 
- * @param {function} getOrganizationById 
+ *
+ * @param {function} getUserById
+ * @param {function} getOrganizationById
  */
-function makeGetUserByIdWithOrganization(getUserById, getOrganizationById){
-  return function getUserByIdWithOrganization(userId){
+function makeGetUserByIdWithOrganization(getUserById, getOrganizationById) {
+  return function getUserByIdWithOrganization(userId) {
     /* IMPLEMENT ME! */
   };
 }
