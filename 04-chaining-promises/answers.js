@@ -45,6 +45,20 @@ function chainTwoAsyncProcesses(firstPromise, slowAsyncProcess) {
 function makeGetUserByIdWithOrganization(getUserById, getOrganizationById) {
   return function getUserByIdWithOrganization(userId) {
     /* IMPLEMENT ME! */
+    return new Promise((resolve) => {
+      getUserById(userId).then((user) => {
+        if (user !== undefined) {
+          getOrganizationById(user.organizationId).then(
+            (organizzationResponse) => {
+              user.organization = organizzationResponse;
+              resolve(user);
+            }
+          );
+        } else {
+          resolve(user);
+        }
+      });
+    });
   };
 }
 
